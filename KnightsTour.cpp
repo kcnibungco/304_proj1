@@ -7,11 +7,6 @@
 //===================================================================================
 #include "stdafx.h"
 #include <iostream>
-#include <fstream> 
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
-#include <vector>
 
 #define width 8
 #define height 8
@@ -31,12 +26,17 @@ using namespace std;
 // FUNCTIONS
 //===================================================================================
 
+bool tour(int cb[width][height], int i, int j, int KTMOV1, int KTMOV2, int M)
+{
+	
+}
+	
 void KnightsTour()
 {
-	int cb [width][height];			//matrix for chessboard 8 X 8
-	int i, j;						//position of the knight
+	int cb [width][height];				//matrix for chessboard 8 X 8
+	int i, j;							//position of the knight
 	
-	for (int x = 0; x < width; x++)			//for loop to fill the 8 X 8 with 0's
+	for (int x = 0; x < width; x++)		//for loop to fill the 8 X 8 with 0's
 	{
 		for (int y = 0; y < height; y++)
 		{
@@ -44,19 +44,34 @@ void KnightsTour()
 		}
 	}
 	
-	int KTMOV1[width] = { -2, -1, 1, 2, -2, -1, 1, 2 };
-	int KTMOV2[height] = { 1, 2, 2, 1, -1, -2, -2, -1 };
+	i = 0;	//starting x value
+	j = 0;	// starting y value
 	
-	for (int x = 0; x < width; x++)			//print out the chessboard matrix
-	{
-		for (int y = 0; y < height; y++)
-		{
-			cout << cb [x][y] << "\t";
-		}
-		
-		cout << "\n";
-	}
+	cb[i][j] = 1;	//Set the starting position to 1
 
+	int KTMOV1[width] = { -2, -1, 1, 2, 2, 1, -1, -2 };	//possible move options
+	int KTMOV2[height] = { 1, 2, 2, 1, -1, -2, -2, -1 };//for the knight
+
+	
+	cout << "The Knights initial position is (" << i << "," << j << ").\n";
+	
+	if (tour(cb, i, j, KTMOV1, KTMOV2, 0) == false )	//Recursive function and
+	{													//check if tour is true
+		cout << "The tour does not exist.\n";
+	}
+	
+	else
+	{
+		for (int x = 0; x < width; x++)		//print out the chessboard matrix
+		{
+			for (int y = 0; y < height; y++)
+			{
+				cout << cb [x][y] << "\t";
+			}
+			
+			cout << "\n";
+		}
+	}
 }
 
 //===================================================================================
@@ -65,7 +80,7 @@ void KnightsTour()
 
 int main() {
 	
-	KnightsTour();		//Call the KnightsTour Function
+	KnightsTour();					//Call the KnightsTour Function
 	cout << endl;
 	return 0;
 }
