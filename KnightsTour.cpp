@@ -33,6 +33,12 @@ bool possibilitychecker(int Nexti, int Nextj, int cb[width][height])
 	int i = Nexti;					//Next i value
 	int j = Nextj;					//Next j value
 
+	for (int a = 0; a < width; a++)
+	{
+		Nexti = i + KTMOV1[a];
+		Nextj = j + KTMOV2[a];
+
+
 	if ((i >= 0 && i <= width) && (j >= 0 && j <= height) && cb[i][j] == 0)
 		return true;				//If all conditions satisfied return true
 	return false;					//Otherwise return false
@@ -57,8 +63,11 @@ void KnightsTour()
 		}
 	}
 
-	i = rand() % width;	//starting x value
-	j = rand() % height;	// starting y value
+	i = 0;	//starting x value
+	j = 0;	// starting y value
+
+	//i = rand() % width;	//starting x value
+	//j = rand() % width;	// starting y value
 
 	cb[i][j] = 1;	//Set the starting position to 1
 
