@@ -33,32 +33,40 @@ bool possibilitychecker(int Nexti, int Nextj, int cb[width][height])
 	int i = Nexti;					//Next i value
 	int j = Nextj;					//Next j value
 
-	for (i = 0; i < width * height; i++)
+	if ((Nexti >= 0 && Nexti < width) && (Nextj >= 0 && Nextj < height) && cb[i][j] == 0)
 	{
-
-		for (int a = 0; a < width; a++)
-		{
-			Nexti = i + KTMOV1[a];
-			Nextj = j + KTMOV2[a];
-			if ((Nexti >= 0 && Nexti < width) && Nextj >= 0 && Nextj < height))
-			{
-
-			}
-		}
-	}
-
-	if ((i >= 0 && i <= width) && (j >= 0 && j <= height) && cb[i][j] == 0)
-		return true;				//If all conditions satisfied return true
-	return false;					//Otherwise return false
+		return true;	//checks if the next move is valid
+	}					//if it is return true
+	return false;				//otherwise return false
 }
 
-bool tour(int cb[width][height], int i, int j, int KTMOV1, int KTMOV2, int M)
+bool tour(int cb[width][height], int i, int j, int KTMOV1[], int KTMOV2[], int M)
 {
-	if (M == width*height - 1)
+	int Nexti, Nextj;
+	if (M == width*height)
 	{
 		return true;	//The tour has finished go back to the knightstour function
 	}
 
+	for (int a = 0; a < width; a++)
+	{
+		Nexti = i + KTMOV1[a];	//find the next move
+		Nextj = j + KTMOV2[a];
+
+		if (possibilitychecker(Nexti, Nextj, cb)) {
+			// if the move is possible
+			// increment the move count and store it in tour matrix
+			cb[Nexti][Nextj] = M + 1;
+			if (tour(cb, Nexti, Nextj, KTMOV1, KTMOV2, M + 1) == true)
+			{
+				return true;
+			}
+			else {
+				//if the move was invalid, try out other possiblities 
+				cb[Nexti][Nextj] = 0;
+			}
+		}
+	}
 	return false;
 }
 
@@ -75,11 +83,11 @@ void KnightsTour()
 		}
 	}
 
-	i = 0;	//starting x value
-	j = 0;	// starting y value
+	i = 1;	//starting x value
+	j = 1;	// starting y value
 
-	//i = rand() % width;	//starting x value
-	//j = rand() % width;	// starting y value
+			//i = rand() % width;	//starting x value
+			//j = rand() % width;	// starting y value
 
 	cb[i][j] = 1;	//Set the starting position to 1
 
@@ -89,13 +97,14 @@ void KnightsTour()
 
 	cout << "The Knights initial position is (" << i << "," << j << ").\n";
 
-	if (tour(cb, i, j, KTMOV1[width], KTMOV2[height], 0) == false)	//Recursive function and
+	if (tour(cb, i, j, KTMOV1, KTMOV2, 1) == false)	//Recursive function and
 	{													//check if tour is true
 		cout << "The tour does not exist.\n";
 	}
 
 	else
 	{
+		cout << "The tour exists:\n";
 		for (int x = 0; x < width; x++)		//print out the chessboard matrix
 		{
 			for (int y = 0; y < height; y++)
