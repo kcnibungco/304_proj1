@@ -7,6 +7,7 @@
 //===================================================================================
 #include "stdafx.h"
 #include <iostream>
+#include <cstdlib>
 #include "KnightsTour.h"
 
 #define width 8
@@ -56,8 +57,8 @@ void KnightsTour()
 		}
 	}
 
-	i = 0;	//starting x value
-	j = 0;	// starting y value
+	i = rand() % width;	//starting x value
+	j = rand() % height;	// starting y value
 
 	cb[i][j] = 1;	//Set the starting position to 1
 
