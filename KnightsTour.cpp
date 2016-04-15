@@ -34,19 +34,19 @@ bool possibilitychecker(int Nexti, int Nextj, int cb[width][height])
 	int j = Nextj;					//Next j value
 
 	if ((Nexti >= 0 && Nexti < width) && (Nextj >= 0 && Nextj < height) && cb[i][j] == 0)
-	{
-		return true;	//checks if the next move is valid
-	}					//if it is return true
+		{
+			return true;	//checks if the next move is valid
+		}					//if it is return true
 	return false;				//otherwise return false
 }
 
 bool tour(int cb[width][height], int i, int j, int KTMOV1[], int KTMOV2[], int M)
 {
 	int Nexti, Nextj;
-	if (M == width*height)
-	{
-		return true;	//The tour has finished go back to the knightstour function
-	}
+		if (M == width * height)
+		{
+			return true;	//The tour has finished go back to the knightstour function
+		}
 
 	for (int a = 0; a < width; a++)
 	{
@@ -83,8 +83,8 @@ void KnightsTour()
 		}
 	}
 
-	i = 1;	//starting x value
-	j = 1;	// starting y value
+	i = 5;	//starting x value
+	j = 5;	// starting y value
 
 			//i = rand() % width;	//starting x value
 			//j = rand() % width;	// starting y value
