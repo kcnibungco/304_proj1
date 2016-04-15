@@ -33,11 +33,19 @@ bool possibilitychecker(int Nexti, int Nextj, int cb[width][height])
 	int i = Nexti;					//Next i value
 	int j = Nextj;					//Next j value
 
-	for (int a = 0; a < width; a++)
+	for (i = 0; i < width * height; i++)
 	{
-		Nexti = i + KTMOV1[a];
-		Nextj = j + KTMOV2[a];
 
+		for (int a = 0; a < width; a++)
+		{
+			Nexti = i + KTMOV1[a];
+			Nextj = j + KTMOV2[a];
+			if ((Nexti >= 0 && Nexti < width) && Nextj >= 0 && Nextj < height))
+			{
+
+			}
+		}
+	}
 
 	if ((i >= 0 && i <= width) && (j >= 0 && j <= height) && cb[i][j] == 0)
 		return true;				//If all conditions satisfied return true
