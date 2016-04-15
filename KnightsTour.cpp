@@ -46,8 +46,12 @@ bool possibilitychecker(int Nexti, int Nextj, int cb[width][height])
 
 bool tour(int cb[width][height], int i, int j, int KTMOV1, int KTMOV2, int M)
 {
-	
-	return true;
+	if (M == width*height - 1)
+	{
+		return true;	//The tour has finished go back to the knightstour function
+	}
+
+	return false;
 }
 
 void KnightsTour()
